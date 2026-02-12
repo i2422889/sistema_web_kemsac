@@ -1,0 +1,185 @@
+/* 🔹 Fondo beige elegante */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f1e8;
+}
+
+/* 🔹 TOPBAR */
+.topbar {
+    background: #170909;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+}
+
+.logo {
+    font-size: 18px;
+}
+
+.logo strong {
+    color: #2563eb;
+    
+}
+
+.ubicacion {
+    display: block;
+    font-size: 12px;
+    color: gray;
+}
+
+.admin a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+/* 🔹 BUSCADOR */
+.buscador-section {
+    width: 95%;
+    margin: 25px auto 10px auto;
+    
+}
+
+.buscador-banner {
+    background: #0f22b0;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+.buscador-banner input {
+    width: 90%;
+    padding: 15px;
+    border-radius: 19px;
+    border: 1px solid #f00a0a;
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.buscador-banner input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+}
+
+.filtros {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}
+/* 🔹 filtro */
+.btn-filtro {
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: 500;
+    font-size: 14px;
+
+    background: #f0f0f0;
+    color: #333;
+
+    transition: all 0.3s ease;
+    border: 1px solid #ddd;
+}
+
+/* Hover */
+.btn-filtro:hover {
+    background: #1e3c72;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Activo */
+.btn-filtro.activo {
+    background: #2a5298;
+    color: white;
+}
+
+/* 🔹 CARRUSEL */
+.carousel {
+    position: relative;
+    width: 95%;
+    height: 450px;
+    margin: 20px auto;
+    overflow: hidden;
+    border-radius: 15px;
+    background: #ddd;
+}
+
+.slides {
+    width: 100%;
+    height: 100%;
+}
+
+.slides img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+}
+
+.slides img.active {
+    display: block;
+}
+
+/* Botones carrusel */
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    padding: 10px 14px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 18px;
+}
+
+.prev { left: 15px; }
+.next { right: 15px; }
+
+/* 🔹 PRODUCTOS */
+.productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+/* BOTÓN ADMIN ELEGANTE */
+.admin {
+    display: flex;
+    align-items: center;
+}
+
+/* BOTÓN ADMIN ELEGANTE */
+.btn-admin {
+    text-decoration: none;
+    padding: 10px 22px;
+    border-radius: 30px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    font-size: 14px;
+
+    background: linear-gradient(135deg, #ee9d11, #f10505);
+    color: rgb(225, 83, 7);
+
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+    transition: all 0.3s ease;
+}
+
+/* Hover efecto premium */
+.btn-admin:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+    background: linear-gradient(135deg, #03f333, #049a13);
+}
+
+/* Click efecto */
+.btn-admin:active {
+    transform: scale(0.95);
+}

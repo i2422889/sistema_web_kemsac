@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>KEMSAC - Repuestos</title>
+<link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+
+<!-- 🔹 HEADER -->
+<header class="topbar">
+    <div class="logo">
+        🛒 <strong>KEMSAC</strong>
+        <span class="ubicacion">Huancayo - Chilca</span>
+    </div>
+
+    <div class="admin">
+    <a href="/admin-login" class="btn-admin">
+        <span>Admin</span>
+    </a>
+</div>
+
+</header>
+
+<!-- 🔹 BUSCADOR -->
+<section class="buscador-section">
+    <div class="buscador-banner">
+        <input type="text" placeholder="Buscar productos o repuestos...">
+
+        <div class="filtros">
+    <a href="/" class="btn-filtro">Principal</a>
+    <a href="/repuestos" class="btn-filtro">Repuestos</a>
+    <a href="/productos" class="btn-filtro">Productos</a>
+    <a href="/servicios" class="btn-filtro">Servicios</a>
+</div>
+
+
+
+    </div>
+</section>
+
+<!-- 🔹 CARRUSEL -->
+<section class="carousel">
+
+    <div class="slides">
+        <img src="img/logo1.png" class="active">
+        <img src="img/logo2.png">
+        <img src="img/logo3.png">
+        <img src="img/logo4.png">
+    </div>
+
+    <button class="prev">&#10094;</button>
+    <button class="next">&#10095;</button>
+
+</section>
+
+<!-- 🔹 PRODUCTOS -->
+<section class="productos" id="productosContainer">
+</section>
+
+
+
+<script src="js/productos.js"></script>
+<script src="js/carousel.js"></script><script src="js/productos.js"></script>
+
+</body>
+</html>

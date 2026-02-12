@@ -1,0 +1,163 @@
+/* ============================= */
+/* NAVBAR */
+/* ============================= */
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 60px;
+    background: #1d3557;
+    color: white;
+}
+
+.nav-links a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+}
+
+.nav-links a:hover,
+.nav-links .activo {
+    color: #f1faee;
+    border-bottom: 2px solid #e63946;
+}
+
+/* ============================= */
+/* TÍTULO */
+/* ============================= */
+
+.titulo-pagina {
+    text-align: center;
+    padding: 40px 20px;
+    background: #f8f9fa;
+}
+
+.titulo-pagina h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+/* ============================= */
+/* PRODUCTOS */
+/* ============================= */
+
+.productos-section {
+    padding: 50px 60px;
+    background: #f1f3f5;
+}
+
+.productos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+}
+
+.card-producto {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    text-align: center;
+    transition: 0.3s ease;
+}
+
+.card-producto:hover {
+    transform: translateY(-8px);
+}
+
+.card-producto img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.card-producto h3 {
+    margin: 15px 0 10px;
+}
+
+.card-producto p {
+    font-size: 14px;
+    color: #555;
+}
+
+.precio {
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0;
+    color: #e63946;
+}
+
+/* ============================= */
+/* BOTONES */
+/* ============================= */
+
+.botones {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-carrito {
+    padding: 8px 14px;
+    border: none;
+    background: #1d3557;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-carrito:hover {
+    background: #457b9d;
+}
+
+.btn-comprar {
+    padding: 8px 14px;
+    border: none;
+    background: #e63946;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-comprar:hover {
+    background: #c1121f;
+}
+/* 🔹 CARRITO */
+.carrito-flotante {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #065af7;
+    color: white;
+    font-size: 24px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.contador-carrito {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: red;
+    color: white;
+    font-size: 12px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}

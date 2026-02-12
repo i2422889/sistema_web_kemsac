@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Carrito - KEMSAC</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/carrito.css">
+</head>
+<body>
+
+<!-- ========================= -->
+<!-- OVERLAY DEL CARRITO -->
+<!-- ========================= -->
+<div class="carrito-overlay">
+
+    <div class="carrito-container">
+
+        <!-- HEADER -->
+        <div class="carrito-header">
+            <h2>🛒 Mi Carrito</h2>
+            <button onclick="cerrarCarrito()">✖</button>
+        </div>
+
+        <!-- CUERPO (Aquí llegan los productos) -->
+        <div id="listaCarrito" class="carrito-body">
+            <!-- Productos dinámicos -->
+        </div>
+
+        <!-- FOOTER -->
+        <div class="carrito-footer">
+            <p>Subtotal: <span id="subtotal">S/ 0.00</span></p>
+            <p>Envío: <span id="envio">S/ 0.00</span></p>
+            <h3>Total: <span id="total">S/ 0.00</span></h3>
+
+            <button class="btn-pagar">Ir a pagar</button>
+            <button class="btn-vaciar" onclick="vaciarCarrito()">Vaciar carrito</button>
+        </div>
+
+    </div>
+
+</div>
+<section id="listaCarrito"></section>
+<script src="js/carrito.js"></script>
+
+</body>
+</html>
+
+
+

@@ -1,0 +1,91 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #06122B;
+    color: white;
+}
+
+header {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header span {
+    color: #00D4FF;
+}
+
+.admin-btn {
+    background: transparent;
+    border: 1px solid #00D4FF;
+    color: #00D4FF;
+    padding: 6px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.categorias {
+    padding: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.categorias button {
+    background: #0E1C3F;
+    border: none;
+    color: #9BB0D3;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.categorias .activo {
+    background: #00D4FF;
+    color: black;
+}
+
+.productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 15px;
+    padding: 20px;
+}
+
+.card {
+    background: #0E1C3F;
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.card img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.precio {
+    color: #00D4FF;
+    font-weight: bold;
+}
+
+.add-btn {
+    background: #00D4FF;
+    border: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.carrito-flotante {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #00D4FF;
+    color: black;
+    padding: 15px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+}
