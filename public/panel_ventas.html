@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel Admin Ventas</title>
+<link rel="stylesheet" href="css/panel_ventas.css">
+</head>
+<body>
+
+<div class="container">
+
+    <header>
+        <h1>Panel Administrativo de Ventas</h1>
+        <button id="btnAgregar">+ Agregar Producto</button>
+    </header>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="tablaProductos">
+        </tbody>
+    </table>
+
+</div>
+
+<!-- Modal -->
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <h2 id="modalTitulo">Agregar Producto</h2>
+
+        <input type="text" id="nombre" placeholder="Nombre del producto">
+        <input type="number" id="precio" placeholder="Precio">
+        <input type="number" id="stock" placeholder="Stock">
+
+        <div class="modal-buttons">
+            <button id="guardar">Guardar</button>
+            <button id="cancelar">Cancelar</button>
+        </div>
+    </div>
+</div>
+
+<script src="js/panel_ventas.js"></script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
+}
+
+.container {
+    width: 90%;
+    margin: 40px auto;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+#btnAgregar {
+    background: #00c6ff;
+    color: white;
+    font-weight: bold;
+}
+
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    background: rgba(255,255,255,0.1);
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+}
+
+th {
+    background: rgba(0,0,0,0.3);
+}
+
+tr:nth-child(even) {
+    background: rgba(255,255,255,0.05);
+}
+
+.acciones button {
+    margin: 0 3px;
+}
+
+.editar {
+    background: #ffc107;
+}
+
+.eliminar {
+    background: #ff4b5c;
+    color: white;
+}
+
+/* Modal */
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: #243b55;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-content input {
+    margin: 8px 0;
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+#guardar {
+    background: #28a745;
+    color: white;
+}
+
+#cancelar {
+    background: #ff4b5c;
+    color: white;
+}

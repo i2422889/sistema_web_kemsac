@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Administrador</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/login_admin.css">
+</head>
+<body>
+
+    <div class="background"></div>
+
+    <div class="login-container">
+        <div class="login-card">
+
+            <h2>Panel Administrativo</h2>
+            <p class="subtitulo">Acceso exclusivo para administradores</p>
+
+            <form id="loginForm">
+
+                <div class="input-group">
+                    <input type="text" id="usuario" required>
+                    <label>Usuario</label>
+                </div>
+
+                <div class="input-group">
+                    <input type="password" id="password" required>
+                    <label>Contraseña</label>
+                </div>
+
+                <button type="submit" class="btn-login">
+                    Ingresar
+                </button>
+
+                <p class="mensaje" id="mensaje"></p>
+
+            </form>
+
+            <div class="extra-options">
+                <a href="registro_admin.html">Registrar nuevo admin</a>
+                <a href="recuperar_password.html">¿Olvidaste tu contraseña?</a>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="js/admin_login.js"></script>
+</body>
+</html>
+
+
+
+
