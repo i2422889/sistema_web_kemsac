@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finalizar Compra - Checkout</title>
+    <link rel="stylesheet" href="css/tipodecompra.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+</head>
+<body>
+
+<div class="main-wrapper">
+    <div class="container">
+        <header class="header">
+            <button id="btnVolver" class="btn-back">
+                <span class="material-icons-round">arrow_back</span> Volver
+            </button>
+            <h1 class="titulo">Finalizar Compra</h1>
+            <p class="subtitulo">Hola, <span id="nombreUsuario">Cliente</span>. Selecciona tu método de entrega.</p>
+        </header>
+
+        <div class="checkout-layout">
+            <main class="main-content">
+                <div class="tipo-pedido-section">
+                    <h3>Tipo de Pedido *</h3>
+                    <div class="opciones-grid">
+                        <div id="btnDelivery" class="card-option">
+                            <span class="icon">🚚</span>
+                            <div class="textos">
+                                <strong>Delivery</strong>
+                                <p>Envío a domicilio</p>
+                            </div>
+                        </div>
+                        <div id="btnRecoger" class="card-option">
+                            <span class="icon">🏢</span>
+                            <div class="textos">
+                                <strong>Recojo en Tienda</strong>
+                                <p>Huancayo - Chilca</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="modalDelivery" class="modal-overlay">
+                    <div class="modal-content">
+                        <h3><span class="icon">📍</span> Datos de Entrega</h3>
+                        <form id="formDatosEntrega">
+                            <div class="input-group">
+                                <label>Ubicación</label>
+                                <input type="text" id="ubicacion" placeholder="Dirección exacta" required>
+                            </div>
+                            <div class="input-group">
+                                <label>Referencia</label>
+                                <input type="text" id="referencia" placeholder="Ej: Portón azul, frente al parque">
+                            </div>
+                            <div class="input-group">
+                                <label>Teléfono / WhatsApp</label>
+                                <input type="tel" id="telefono" placeholder="Número de contacto" required>
+                            </div>
+                            <div class="input-group">
+                                <label>Nota adicional</label>
+                                <textarea id="nota" placeholder="Indicaciones para el repartidor..."></textarea>
+                            </div>
+                            <div class="modal-buttons">
+                                <button type="button" id="btnCerrarModal" class="btn-secondary">Cancelar</button>
+                                <button type="submit" class="btn-primary">Confirmar Dirección</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </main>
+
+            <aside class="resumen-lateral">
+                <div class="resumen-card">
+                    <h3>Resumen del Pedido</h3>
+                    <div class="detalle-precios">
+                        <div class="fila">
+                            <span>Subtotal</span>
+                            <span id="resSubtotal">S/ 0.00</span>
+                        </div>
+                        <div class="fila">
+                            <span>Costo de Envío</span>
+                            <span id="resEnvio">S/ 0.00</span>
+                        </div>
+            
+                        <hr>
+                        <div class="fila total">
+                            <span>Total a Pagar</span>
+                            <span id="resTotal">S/ 0.00</span>
+                        </div>
+                    </div>
+                    <button id="btnFinalizarTodo" class="btn-finalizar">
+                        Confirmar y Pagar
+                    </button>
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+<script src="js/tipodecompra.js"></script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro / Iniciar sesión - KEMSAC</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/logincliente.css">
+</head>
+<body>
+
+<div class="login-container">
+
+    <!-- LOGO -->
+    <div class="logo">
+        <h1>KEMSAC</h1>
+        <p>Huancayo - Chilca</p>
+    </div>
+
+    <!-- BOTÓN VOLVER -->
+    <button id="btnVolver" class="btn-volver-modal">← Volver</button>
+
+    <!-- BOTÓN CONTINUAR CON GOOGLE -->
+    <button class="btn-google">
+        <img src="https://img.icons8.com/color/16/google-logo.png" alt="Google">
+        Continuar con Google
+    </button>
+
+    <div class="separator"><span>o</span></div>
+
+    <!-- FORMULARIO LOGIN -->
+    <form id="formLogin">
+        <input type="email" placeholder="Correo electrónico" required>
+        <input type="password" placeholder="Contraseña" required>
+        <a href="#" class="recuperar">¿Olvidaste tu contraseña?</a>
+        <button type="submit">Iniciar sesión</button>
+    </form>
+
+    <div class="divider"></div>
+
+    <!-- BOTÓN ABRIR MODAL REGISTRO -->
+    <p>¿No tienes cuenta?</p>
+    <button id="btnRegistro">Registrarse</button>
+</div>
+
+<!-- =========================
+     MODAL DE REGISTRO
+     ========================= -->
+<div id="modalRegistro" class="modal">
+    <div class="modal-content">
+        <span class="close" id="cerrarModal">&times;</span>
+        <h2>Crear Cuenta</h2>
+        <form id="formRegistro">
+            <input type="text" placeholder="Nombre completo" required>
+            <input type="email" placeholder="Correo electrónico" required>
+            <input type="password" placeholder="Contraseña" required>
+            <input type="password" placeholder="Confirmar contraseña" required>
+            <button type="submit">Registrarse</button>
+        </form>
+        <p>¿Ya tienes cuenta? <span id="abrirLogin" style="color:#0c54fb; cursor:pointer;">Inicia sesión</span></p>
+    </div>
+</div>
+<script src="js/logincliente.js"></script>
+</body>
+</html>

@@ -1,26 +1,41 @@
-const slides = document.querySelectorAll(".slides img");
-const nextBtn = document.querySelector(".next");
-const prevBtn = document.querySelector(".prev");
-
 let index = 0;
+const slides = document.querySelectorAll(".carousel-slide");
+let interval = null;
+const TIME = 4000; // 4 segundos
 
+// Mostrar slide actual
 function showSlide(i) {
-    slides.forEach(slide => slide.classList.remove("active"));
-    slides[i].classList.add("active");
+  slides.forEach(slide => slide.classList.remove("active"));
+  slides[i].classList.add("active");
 }
 
-nextBtn.addEventListener("click", () => {
+// Cambiar slide con botones
+function changeSlide(n) {
+  if (slides.length <= 1) return;
+
+  index = (index + n + slides.length) % slides.length;
+  showSlide(index);
+  restartAutoPlay();
+}
+
+// Auto play
+function startAutoPlay() {
+  if (slides.length <= 1) return;
+
+  interval = setInterval(() => {
     index = (index + 1) % slides.length;
     showSlide(index);
-});
+  }, TIME);
+}
 
-prevBtn.addEventListener("click", () => {
-    index = (index - 1 + slides.length) % slides.length;
-    showSlide(index);
-});
+// Reinicia el autoplay al tocar botones
+function restartAutoPlay() {
+  clearInterval(interval);
+  startAutoPlay();
+}
 
-/* Cambio automático cada 4 segundos */
-setInterval(() => {
-    index = (index + 1) % slides.length;
-    showSlide(index);
-}, 4000);
+// Inicializar
+document.addEventListener("DOMContentLoaded", () => {
+  showSlide(index);
+  startAutoPlay();
+});
