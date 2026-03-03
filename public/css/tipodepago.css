@@ -1,196 +1,213 @@
-/* GLOBAL */
+/* ============================= */
+/* VARIABLES GLOBALES */
+/* ============================= */
 :root {
-    --primary: #4f46e5; /* Indigo moderno */
+    --primary: #4f46e5;
+    --primary-dark: #4338ca;
+    --bg-color: #f3f4f6;
     --text-dark: #1f2937;
     --text-light: #6b7280;
-    --bg-color: #f9fafb;
     --white: #ffffff;
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 8px 20px rgba(0,0,0,0.08);
+    --shadow-lg: 0 20px 40px rgba(0,0,0,0.12);
 }
 
-*{
+* {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
 body {
-    margin: 0;
     font-family: 'Poppins', sans-serif;
-    background-color: var(--bg-color);
+    background: linear-gradient(135deg, #e0e7ff, #f3f4f6);
     color: var(--text-dark);
 }
 
+/* ============================= */
+/* CONTAINER GENERAL ELEGANTE */
+/* ============================= */
 .main-wrapper {
     min-height: 100vh;
-    padding: 20px;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .contenedor {
+    width: 100%;
     max-width: 1200px;
-    margin: auto;
-}
-
-/* HEADER */
-.header-pago {
-    margin-bottom: 40px;
-    text-align: center;
+    background: var(--white);
+    border-radius: 25px;
+    padding: 40px;
+    box-shadow: var(--shadow-lg);
     position: relative;
 }
 
-.btn-regresar {
-    position: absolute;
-    left: 0;
-    top: 5px;
-    text-decoration: none;
-    color: var(--primary);
-    font-weight: 500;
-    transition: 0.3s;
-}
-
-.btn-regresar:hover {
-    opacity: 0.7;
+/* ============================= */
+/* HEADER */
+/* ============================= */
+.header-pago {
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
 }
 
 .header-pago h1 {
-    font-size: 32px;
-    margin: 0 0 10px 0;
+    font-size: 30px;
     font-weight: 700;
 }
 
 .header-pago p {
     color: var(--text-light);
-    margin: 0;
+    margin-top: 5px;
 }
 
+.btn-regresar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    text-decoration: none;
+    color: var(--primary);
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn-regresar:hover {
+    color: var(--primary-dark);
+}
+
+/* ============================= */
 /* ESTRUCTURA PRINCIPAL */
+/* ============================= */
 .contenido-pago {
     display: flex;
-    gap: 30px;
+    gap: 40px;
     flex-wrap: wrap;
 }
 
-/* GRILLA DE PAGOS */
+/* ============================= */
+/* GRID PAGOS */
+/* ============================= */
 .grid-pagos {
     flex: 1;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 20px;
-    min-width: 300px;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 25px;
 }
 
-/* CARDS MEJORADAS */
+/* ============================= */
+/* TARJETAS */
+/* ============================= */
 .card {
-    border-radius: 16px;
-    padding: 30px;
+    border-radius: 20px;
+    padding: 25px;
+    height: 180px;
     color: white;
-    cursor:pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    transition: 0.3s ease;
     box-shadow: var(--shadow-md);
-    position: relative;
-    overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 200px;
 }
 
 .card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-6px);
     box-shadow: var(--shadow-lg);
 }
 
-.card-overlay {
-    position: absolute;
-    inset: 0;
-    background: url('https://www.transparenttextures.com/patterns/fabric-plaid.png'); /* Textura sutil */
-    opacity: 0.1;
-}
-
-.card-content {
-    position: relative;
-    z-index: 1;
-}
-
 .icono {
-    font-size: 35px;
-    margin-bottom: 15px;
+    font-size: 32px;
     background: rgba(255,255,255,0.2);
-    width: 60px;
-    height: 60px;
+    width: 55px;
+    height: 55px;
+    border-radius: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 12px;
 }
 
 .card h2 {
-    margin: 0 0 5px 0;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 600;
 }
 
 .card p {
-    margin: 0;
-    opacity: 0.9;
     font-size: 14px;
+    opacity: 0.9;
+}
+/* Botón dentro de la card efectivo */
+.btn-efectivo {
+    margin-top: 15px;
+    padding: 10px 12px;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.9);
+    color: #1b5e20;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    transition: 0.3s ease;
 }
 
-/* Colores de Gradiantes Actualizados */
+.btn-efectivo:hover {
+    background: white;
+    transform: translateY(-2px);
+}
+
+/* Estado activado */
+.card.efectivo.activo {
+    box-shadow: 0 0 0 3px #00c853 inset;
+}
+/* COLORES */
 .yape { background: linear-gradient(135deg, #8e24aa, #6a1b9a); }
 .plin { background: linear-gradient(135deg, #00acc1, #1565c0); }
 .tarjeta { background: linear-gradient(135deg, #3949ab, #1a237e); }
 .efectivo { background: linear-gradient(135deg, #43a047, #1b5e20); }
 
-/* RESUMEN DE PEDIDO (LATERAL) */
+/* ============================= */
+/* RESUMEN PEDIDO */
+/* ============================= */
 .resumen-pedido {
-    width: 350px;
-    background: var(--white);
+    width: 340px;
+    background: #fafafa;
+    border-radius: 20px;
     padding: 30px;
-    border-radius: 16px;
     box-shadow: var(--shadow-md);
     height: fit-content;
-    position: sticky;
-    top: 20px;
 }
 
 .resumen-pedido h2 {
-    margin: 0 0 20px 0;
+    margin-bottom: 20px;
     font-size: 20px;
-    border-bottom: 2px solid #f3f4f6;
+    border-bottom: 2px solid #eee;
     padding-bottom: 10px;
-}
-
-.detalles-costo {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
 }
 
 .fila-costo {
     display: flex;
     justify-content: space-between;
-    color: var(--text-light);
     font-size: 15px;
-}
-
-#pagoTipoEntrega {
-    text-transform: capitalize;
-}
-
-.detalles-costo hr {
-    border: 0;
-    border-top: 1px solid #f3f4f6;
-    margin: 10px 0;
+    margin-bottom: 12px;
+    color: var(--text-light);
 }
 
 .fila-costo.total {
-    color: var(--text-dark);
-    font-weight: 700;
     font-size: 20px;
+    font-weight: 700;
+    color: var(--text-dark);
 }
 
 .fila-costo.total span:last-child {
     color: var(--primary);
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 10px 0;
 }
 
 .pago-seguro-info {
@@ -198,37 +215,34 @@ body {
     text-align: center;
     background: #ecfdf5;
     color: #065f46;
-    padding: 10px;
-    border-radius: 8px;
+    padding: 12px;
+    border-radius: 10px;
     font-size: 13px;
-    font-weight: 500;
+    font-weight: 600;
 }
 
-/* MODAL MEJORADO */
+/* ============================= */
+/* MODAL */
+/* ============================= */
 .modal {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0,0,0,0.5);
     justify-content: center;
     align-items: center;
-    z-index: 1000;
-    opacity: 0;
-    transition: opacity 0.3s ease;
     padding: 20px;
+    z-index: 1000;
 }
 
 .modal.open {
     display: flex;
-    opacity: 1;
 }
 
 .modal-content {
     background: var(--white);
     width: 100%;
     max-width: 500px;
-    max-height: 90vh;
-    overflow-y: auto;
     border-radius: 20px;
     box-shadow: var(--shadow-lg);
     animation: slideUp 0.3s ease;
@@ -236,12 +250,11 @@ body {
 
 .modal-header {
     padding: 20px 30px;
-    border-bottom: 1px solid #f3f4f6;
+    border-bottom: 1px solid #eee;
     position: relative;
 }
 
 .modal-header h2 {
-    margin: 0;
     font-size: 20px;
 }
 
@@ -252,151 +265,86 @@ body {
     cursor: pointer;
     font-size: 18px;
     color: var(--text-light);
-    transition: 0.3s;
-}
-
-.cerrar:hover {
-    color: var(--text-dark);
 }
 
 .modal-body {
     padding: 30px;
 }
 
-/* Elementos dentro del Modal Body (generados por JS) */
-.modal-instrucciones {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.qr-container {
-    text-align: center;
-    margin: 20px 0;
-}
-
-.qr-image {
-    width: 200px;
-    height: 200px;
-    border: 1px solid #e5e7eb;
-    padding: 10px;
-    border-radius: 12px;
-}
-
-.monto-destacado {
-    background: #eef2ff;
-    color: var(--primary);
-    padding: 15px;
-    border-radius: 12px;
-    text-align: center;
-    font-size: 24px;
-    font-weight: 700;
-    margin: 20px 0;
-}
-
-.info-adicional {
-    color: var(--text-light);
-    font-size: 14px;
-    margin-bottom: 20px;
-    background: #f9fafb;
-    padding: 15px;
-    border-radius: 8px;
-}
-
-/* FORMULARIOS Y BOTONES */
+/* ============================= */
+/* FORMULARIOS */
+/* ============================= */
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: 500;
     font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    display: block;
 }
 
-input[type="text"],
-input[type="number"],
-input[type="tel"] {
+input {
     width: 100%;
     padding: 12px 15px;
     border-radius: 10px;
-    border: 1px solid #e5e7eb;
+    border: 1px solid #ddd;
     font-family: inherit;
-    transition: 0.3s;
 }
 
 input:focus {
     outline: none;
     border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
 }
 
 .btn-accion {
     width: 100%;
-    padding: 15px;
-    border: none;
+    padding: 14px;
     border-radius: 12px;
-    font-size: 16px;
+    border: none;
     font-weight: 600;
+    font-size: 16px;
     cursor: pointer;
+    background: var(--primary);
+    color: white;
     transition: 0.3s;
-    font-family: inherit;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
 }
 
 .btn-accion:hover {
-    opacity: 0.9;
-    transform: translateY(-2px);
+    background: var(--primary-dark);
 }
 
-.btn-confirmar {
-    background: var(--primary);
-    color: white;
-}
-
-.btn-wsp {
-    background: #25D366;
-    color: white;
-    text-decoration: none;
-}
-
-/* PANTALLA PROCESANDO PEDIDO */
+/* ============================= */
+/* PROCESANDO */
+/* ============================= */
 .procesando-container {
-    display: none; /* Oculto por defecto */
+    display: none;
     position: fixed;
     inset: 0;
-    background: var(--white);
-    z-index: 2000;
+    background: white;
     justify-content: center;
     align-items: center;
-    text-align: center;
+    z-index: 2000;
 }
 
 .procesando-container.active {
     display: flex;
 }
 
-.procesando-content {
-    animation: fadeIn 0.5s ease;
-    padding: 20px;
-}
-
 .spinner {
     width: 60px;
     height: 60px;
-    border: 6px solid #f3f4f6;
+    border: 6px solid #eee;
     border-top: 6px solid var(--primary);
     border-radius: 50%;
-    margin: 0 auto 30px auto;
     animation: spin 1s linear infinite;
 }
 
+/* ============================= */
 /* ANIMACIONES */
+/* ============================= */
 @keyframes spin {
-    0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
 
@@ -405,78 +353,17 @@ input:focus {
     to { transform: translateY(0); opacity: 1; }
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
+/* ============================= */
 /* RESPONSIVE */
-@media (max-width: 768px) {
+/* ============================= */
+@media(max-width: 900px) {
     .contenido-pago {
         flex-direction: column-reverse;
     }
     .resumen-pedido {
         width: 100%;
-        position: static;
-    }
-    .header-pago h1 {
-        font-size: 26px;
-    }
-    .btn-regresar {
-        position: static;
-        display: block;
-        margin-bottom: 15px;
     }
 }
-
-/* Contenedor interno del modal para los métodos de pago */
-.pago-metodo-container {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    animation: fadeIn 0.4s ease-out;
-}
-
-.nota-seguridad {
-    text-align: center;
-    font-size: 12px;
-    color: #888;
-    margin-top: 10px;
-}
-
-/* Estilo para los inputs dentro del modal */
-.form-group input {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 14px;
-    outline: none;
-    transition: border 0.3s;
-}
-
-.form-group input:focus {
-    border-color: #6a1b9a;
-}
-
-/* Ajuste del monto destacado */
-.monto-destacado {
-    font-size: 28px;
-    font-weight: 700;
-    color: #2d3436;
-    text-align: center;
-    padding: 10px;
-    background: #f1f2f6;
-    border-radius: 10px;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-
-
 
 
 

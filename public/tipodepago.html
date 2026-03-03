@@ -46,14 +46,19 @@
                     </div>
                 </div>
 
-                <div class="card efectivo" id="cardEfectivo" onclick="abrirVista('efectivo')">
-                    <div class="card-overlay"></div>
-                    <div class="card-content">
-                        <div class="icono">💵</div>
-                        <h2>Efectivo</h2>
-                        <p>Pago en tienda</p>
-                    </div>
-                </div>
+                <div class="card efectivo" id="cardEfectivo">
+    <div class="card-content">
+        <div class="icono">💵</div>
+        <h2>Efectivo</h2>
+        <p>Pago en tienda</p>
+
+        <!-- NUEVO BOTÓN -->
+        <button class="btn-efectivo"
+                onclick="activarEfectivo(event)">
+            Activar pago en efectivo
+        </button>
+    </div>
+</div>
             </div>
 
             <aside class="resumen-pedido">

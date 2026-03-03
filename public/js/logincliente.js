@@ -65,7 +65,7 @@ formRegistro.addEventListener('submit', async (e) => {
             modalRegistro.style.display = 'none';
 
             // 🔹 Redirigir a tipodecompra.html después del registro exitoso
-            window.location.href = 'tipodecompra.html';
+            window.location.href = 'pedidostipo.html';
         }
     } catch(err){
         console.error("Error fetch registro:", err);
@@ -102,7 +102,7 @@ if(data.success){
     localStorage.setItem('usuario', JSON.stringify({ id: data.user.id, nombre: data.user.nombre }));
 
     // 🔹 Redirigir a tipodecompra.html
-    window.location.href = 'tipodecompra.html';
+    window.location.href = 'pedidostipo.html';
 }
     } catch(err){
         console.error("Error fetch login:", err);

@@ -1,0 +1,205 @@
+/* Fuente y contenedor principal */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+}
+
+.status-container {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: rgba(255, 254, 254, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    overflow: hidden;
+}
+
+/* Header */
+.status-header h1 {
+    margin-bottom: 5px;
+    font-size: 2em;
+    color: #333;
+    text-align: center;
+}
+
+.order-number {
+    font-size: 1.2em;
+    color: #555;
+    text-align: center;
+}
+
+/* Stepper moderno */
+.stepper {
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 0;
+    position: relative;
+}
+
+.step {
+    text-align: center;
+    flex: 1;
+    position: relative;
+}
+
+.step .circle {
+    width: 40px;
+    height: 40px;
+    background-color: #ccc;
+    border-radius: 50%;
+    margin: 0 auto;
+    line-height: 40px;
+    color: white;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.step.active .circle {
+    background: #ff7e5f;
+    box-shadow: 0 0 10px rgba(237, 121, 92, 0.6);
+}
+
+.step .label {
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: #555;
+}
+
+/* Conexiones entre pasos (Línea base gris) - MÁS GRUESA */
+.step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    right: -50%;
+    width: 100%;
+    height: 8px; /* Aumentado a 8px para que sea una barra sólida */
+    background: #ebebeb; /* Gris claro pero sólido */
+    z-index: -1;
+    transition: all 0.4s ease-in-out;
+    border-radius: 4px; /* Bordes redondeados para que se vea moderna */
+}
+
+/* Línea cuando el paso está ACTIVO - MÁXIMA VISIBILIDAD */
+.step.active:not(:last-child)::after {
+    background: #f41505; /* Tu naranja vibrante */
+    opacity: 1 !important; /* Forzamos la opacidad total */
+    
+    /* Triple resplandor para crear un efecto de "neón" que resalte en fondos blancos */
+    box-shadow: 0 0 15px rgba(243, 235, 9, 0.7), 
+                0 0 5px rgba(250, 201, 3, 0.9),
+                0 0 20px rgb(220, 255, 25);
+    
+    height: 8px;
+    top: 20px;
+}
+
+/* Círculos de los pasos - Para que combinen con la línea */
+.step.active .circle {
+    background: #f33809;
+    color: white;
+    box-shadow: 0 0 15px rgba(243, 56, 9, 0.6);
+    border: none;
+}
+/* Información del pedido */
+.order-info {
+    margin: 20px 0;
+    padding: 20px;
+    background: #f0f4f8;
+    border-radius: 12px;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+    max-height: 200px;
+    overflow-y: auto; /* scroll si hay mucho contenido */
+}
+
+/* Mapa */
+#map-section {
+    margin-top: 30px;
+}
+
+#map-section h3 {
+    font-size: 1.3em;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+#map {
+    width: 100%;
+    height: 300px;
+    border-radius: 15px;
+    border: none;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+}
+
+#map:hover {
+    transform: scale(1.02);
+}
+
+/* Botones */
+.actions {
+    margin-top: 25px;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.btn-whatsapp,
+.btn-home {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1em;
+    transition: all 0.3s ease;
+}
+
+.btn-whatsapp {
+    background: linear-gradient(135deg, #25D366, #128C7E);
+}
+
+.btn-whatsapp:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+}
+
+.btn-home {
+    background: linear-gradient(135deg, #ff7e5f, #feb47b);
+}
+
+.btn-home:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px rgba(255, 126, 95, 0.4);
+}
+
+/* Scrollbar bonito para info del pedido */
+.order-info::-webkit-scrollbar {
+    width: 6px;
+}
+
+.order-info::-webkit-scrollbar-track {
+    background: #e0e0e0;
+    border-radius: 3px;
+}
+
+.order-info::-webkit-scrollbar-thumb {
+    background: #ff7e5f;
+    border-radius: 3px;
+}
+
+/* Responsive */
+@media(max-width: 600px) {
+    .stepper {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .step:not(:last-child)::after {
+        display: none;
+    }
+}

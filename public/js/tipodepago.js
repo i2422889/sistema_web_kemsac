@@ -1,46 +1,44 @@
 // ==========================================
-// VARIABLE GLOBAL
+// VARIABLES GLOBALES
 // ==========================================
 let totalGlobal = 0;
+let pedidoTemp = null;
 
 document.addEventListener('DOMContentLoaded', () => {
-    cargarDatosDesdeLocalStorage();
+    cargarDatosPedidoTemp();
 });
 
 // ==========================================
-// 1. CARGA DE DATOS DESDE LOCALSTORAGE
+// 1. CARGAR DATOS DESDE pedido_temp
 // ==========================================
-function cargarDatosDesdeLocalStorage() {
+function cargarDatosPedidoTemp() {
+    const datos = localStorage.getItem('pedido_temp');
 
-    const datosGuardados = localStorage.getItem('resumenCompra');
-
-    if (!datosGuardados) {
-        alert("Tu sesión expiró.");
-        window.location.href = 'tipodecompra.html';
+    if (!datos) {
+        alert("No hay datos de pedido.");
+        window.location.href = 'checkout.html';
         return;
     }
 
-    const resumen = JSON.parse(datosGuardados);
+    pedidoTemp = JSON.parse(datos);
 
-    const subtotal = Number(resumen.subtotal || 0);
-    const envio = Number(resumen.envio || 0);
-    totalGlobal = Number(resumen.total || 0);
-    const tipo = resumen.tipoEntrega || 'No especificado';
-
-    if (totalGlobal <= 0) {
-        alert("Monto inválido.");
-        window.location.href = 'tipodecompra.html';
+    if (!pedidoTemp || !pedidoTemp.total || pedidoTemp.total <= 0) {
+        alert("Pedido inválido.");
+        window.location.href = 'checkout.html';
         return;
     }
 
-    document.getElementById('pagoSubtotal').innerText = `S/ ${subtotal.toFixed(2)}`;
-    document.getElementById('pagoEnvio').innerText = `S/ ${envio.toFixed(2)}`;
-    document.getElementById('pagoTipoEntrega').innerText = tipo.toUpperCase();
+    totalGlobal = Number(pedidoTemp.total);
+
+    // Actualizar interfaz
+    document.getElementById('pagoSubtotal').innerText = `S/ ${pedidoTemp.subtotal.toFixed(2)}`;
+    document.getElementById('pagoEnvio').innerText = `S/ ${pedidoTemp.envio.toFixed(2)}`;
+    document.getElementById('pagoTipoEntrega').innerText = pedidoTemp.tipoEntrega.toUpperCase();
     document.getElementById('totalMostrado').innerText = `S/ ${totalGlobal.toFixed(2)}`;
 }
 
 // ==========================================
-// 2. MODAL
+// MODAL
 // ==========================================
 const modal = document.getElementById('modalPago');
 const tituloModal = document.getElementById('tituloModal');
@@ -59,71 +57,49 @@ window.onclick = function (event) {
 };
 
 // ==========================================
-// 3. VISTAS DINÁMICAS
+// VISTAS DE PAGO
 // ==========================================
 function abrirVista(metodo) {
-
     const totalTxt = totalGlobal.toFixed(2);
     let html = '<div class="pago-metodo-container">';
 
     switch (metodo) {
-
         case 'yape':
-            tituloModal.textContent = 'Pagar con Yape';
-            html += `
-                <p>Escanea el QR o realiza el Yape.</p>
-
-                <div class="qr-container">
-                    <img src="./img/yape.png" alt="QR Yape" class="qr-image">
-                </div>
-
-                <div class="info-pago-destacada">
-                    <p><strong>Número:</strong> 999 888 777</p>
-                    <p><strong>Titular:</strong> Juan Pérez S.A.C.</p>
-                </div>
-
-                <div class="monto-destacado">
-                    S/ ${totalTxt}
-                </div>
-
-                <div class="form-group">
-                    <label>Código de operación</label>
-                    <input type="text" id="codOperacion" maxlength="8" placeholder="Ej: 12345678">
-                </div>
-
-                <button class="btn-accion btn-confirmar" 
-                        onclick="procesarPago('yape')">
-                    Confirmar Yapeo
-                </button>
-            `;
-            break;
-
         case 'plin':
-            tituloModal.textContent = 'Pagar con Plin';
+            const nombreMetodo = metodo === 'yape' ? 'Yape' : 'Plin';
+            const colorMetodo = metodo === 'yape' ? '#742284' : '#00b4cc';
+            
+            const titular = "MACHA SANTA CRUZ KENEDY"; 
+            const numeroCelular = "987 654 321";
+            const rutaQR = `./img/${metodo}.png`;
+
+            tituloModal.textContent = `Pagar con ${nombreMetodo}`;
             html += `
-                <p>Escanea el QR o realiza la transferencia.</p>
+                <div style="text-align: center; margin-bottom: 15px;">
+                    <p>Escanea el QR o yapea al número indicado.</p>
+                    <img src="${rutaQR}" alt="QR ${nombreMetodo}" 
+                         style="width: 180px; height: 180px; border-radius: 10px; border: 1px solid #ddd; margin: 10px 0;">
+                    
+                    <div style="background: #f4f4f4; padding: 10px; border-radius: 8px; margin-bottom: 15px;">
+                        <p style="margin: 0; font-weight: bold; color: ${colorMetodo};">${nombreMetodo.toUpperCase()}: ${numeroCelular}</p>
+                        <p style="margin: 0; font-size: 0.9em; color: #555;">Titular: ${titular}</p>
+                    </div>
 
-                <div class="qr-container">
-                    <img src="./img/plin.png" alt="QR Plin" class="qr-image">
-                </div>
-
-                <div class="info-pago-destacada">
-                    <p><strong>Número:</strong> 999 888 777</p>
-                    <p><strong>Titular:</strong> Juan Pérez S.A.C.</p>
-                </div>
-
-                <div class="monto-destacado">
-                    S/ ${totalTxt}
+                    <div class="monto-destacado" style="font-size: 1.5em; font-weight: bold; color: #333; margin-bottom: 15px;">
+                        S/ ${totalTxt}
+                    </div>
                 </div>
 
                 <div class="form-group">
                     <label>Código de operación</label>
-                    <input type="text" id="codOperacion" maxlength="8" placeholder="Ej: 12345678">
+                    <input type="text" id="codOperacion" maxlength="8" 
+                           placeholder="Ej: 12345678" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
                 </div>
 
                 <button class="btn-accion btn-confirmar" 
-                        onclick="procesarPago('plin')">
-                    Confirmar Plin
+                        onclick="procesarPago('${metodo}')"
+                        style="background-color: #00d1b2; color: white; width: 100%; padding: 12px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; margin-top: 10px;">
+                    Confirmar ${nombreMetodo}
                 </button>
             `;
             break;
@@ -134,9 +110,7 @@ function abrirVista(metodo) {
                 <div class="monto-destacado">
                     Total: S/ ${totalTxt}
                 </div>
-
-                <button class="btn-accion btn-confirmar"
-                        onclick="procesarPago('tarjeta')">
+                <button class="btn-accion btn-confirmar" onclick="procesarPago('tarjeta')">
                     💳 Pagar Ahora
                 </button>
             `;
@@ -148,10 +122,8 @@ function abrirVista(metodo) {
                 <div class="monto-destacado">
                     Total: S/ ${totalTxt}
                 </div>
-
-                <button class="btn-accion btn-confirmar"
-                        onclick="procesarPago('efectivo')">
-                    Confirmar Reserva
+                <button class="btn-accion btn-confirmar" onclick="procesarPago('efectivo')">
+                    Confirmar Pedido
                 </button>
             `;
             break;
@@ -163,14 +135,12 @@ function abrirVista(metodo) {
 }
 
 // ==========================================
-// 4. PROCESAR PAGO
+// CREAR PEDIDO + REGISTRAR PAGO
 // ==========================================
 async function procesarPago(metodo) {
-
     let codigo = null;
 
     if (metodo === 'yape' || metodo === 'plin') {
-
         const input = document.getElementById('codOperacion');
         codigo = input ? input.value.trim() : '';
 
@@ -185,55 +155,53 @@ async function procesarPago(metodo) {
         }
     }
 
-    const pedido_id = localStorage.getItem('pedido_id');
-
-    if (!pedido_id) {
-        alert("No se encontró el pedido.");
-        return;
-    }
-
     try {
-
         const btn = document.querySelector('.btn-confirmar');
         if (btn) {
             btn.disabled = true;
             btn.innerText = "Procesando...";
         }
 
-        const response = await fetch('/api/tipopago', {
+        // Enviamos los datos al servidor
+        const response = await fetch('http://localhost:3000/api/pedidos', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                pedido_id: Number(pedido_id),
-                metodo_pago: metodo,
-                monto: totalGlobal,
-                codigo_aprobacion: codigo,
-                estado: 'PENDIENTE_VERIFICACION'
+                usuarioId: pedidoTemp.usuarioId,
+                productos: pedidoTemp.productos,
+                tipoEntrega: pedidoTemp.tipoEntrega,
+                metodoPago: metodo,
+                subtotal: pedidoTemp.subtotal,
+                costoEnvio: pedidoTemp.envio, // Aseguramos que el nombre coincida con el Backend
+                total: pedidoTemp.total,
+                datosEntrega: pedidoTemp.datosEntrega,
+                codigoOperacion: codigo
             })
         });
 
-        let data;
+        const data = await response.json();
 
-        try {
-            data = await response.json();
-        } catch {
-            throw new Error("Respuesta inválida del servidor");
+        if (!response.ok || !data.success) {
+            throw new Error(data.message || "Error al crear pedido");
         }
-
-        if (!response.ok) {
-            throw new Error(data.error || "Error al registrar pago");
+// ===========================================================
+        // 🚨 IMPORTANTE: Guardamos el ID del pedido que devolvió el Backend
+        // para poder consultarlo en la página de "Estado del Pedido"
+        // ===========================================================
+        if (data.pedido_id) {
+            localStorage.setItem('ultimo_pedido_id', data.pedido_id);
         }
-
         cerrarModal();
 
-        document.getElementById('procesandoPedido')?.classList.add('active');
+        // Limpiar almacenamiento local
+        localStorage.removeItem('pedido_temp');
+        localStorage.removeItem('carrito');
 
         setTimeout(() => {
-            window.location.href = 'procesodelpedido.html';
-        }, 2000);
+            window.location.href = 'estadodelpedido.html';
+        }, 1500);
 
     } catch (error) {
-
         alert("Error: " + error.message);
         console.error(error);
 
@@ -242,5 +210,23 @@ async function procesarPago(metodo) {
             btn.disabled = false;
             btn.innerText = "Reintentar";
         }
+    }
+}
+
+
+
+
+
+
+// ==========================================
+// FUNCIONES ADICIONALES
+// ==========================================
+function activarEfectivo(event) {
+    event.stopPropagation();
+    const card = document.getElementById("cardEfectivo");
+    card.classList.toggle("activo");
+
+    if(card.classList.contains("activo")){
+        alert("Pago en efectivo activado. Deberás pagar al recoger en tienda.");
     }
 }

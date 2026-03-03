@@ -1,261 +1,250 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../db'); // Usa tu conexión existente
+const db = require('../db'); // Asegúrate que db.js esté bien configurado
 
 // ==========================================
-// REGISTRAR PAGO
+// CREAR PEDIDO COMPLETO
 // ==========================================
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
 
     const {
-        pedido_id,
-        metodo_pago,
-        monto,
-        codigo_aprobacion,
-        estado
+        usuarioId,
+        productos,
+        tipoEntrega,
+        metodoPago,
+        subtotal,
+        costoEnvio,
+        total,
+        datosEntrega,
+        codigoOperacion
     } = req.body;
 
     // ======================
     // VALIDACIONES
     // ======================
-
-    if (!pedido_id || !metodo_pago || !monto) {
+    if (!usuarioId || !productos || productos.length === 0) {
         return res.status(400).json({
-            error: "Datos incompletos"
+            success: false,
+            message: "Datos incompletos"
         });
     }
 
-    if ((metodo_pago === 'yape' || metodo_pago === 'plin') && !codigo_aprobacion) {
+    if (!tipoEntrega || !metodoPago || !total) {
         return res.status(400).json({
-            error: "Código de aprobación requerido"
-        });const express = require('express');
-const router = express.Router();
-const db = require('../db'); // Usa tu conexión existente
-
-// ==========================================
-// REGISTRAR PAGO
-// ==========================================
-router.post('/', (req, res) => {
-
-    const {
-        pedido_id,
-        metodo_pago,
-        monto,
-        codigo_aprobacion,
-        estado
-    } = req.body;
-
-    // ======================
-    // VALIDACIONES
-    // ======================
-
-    if (!pedido_id || !metodo_pago || !monto) {
-        return res.status(400).json({
-            error: "Datos incompletos"
+            success: false,
+            message: "Datos inválidos"
         });
     }
 
-    if ((metodo_pago === 'yape' || metodo_pago === 'plin') && !codigo_aprobacion) {
+    if (total <= 0) {
         return res.status(400).json({
-            error: "Código de aprobación requerido"
-        });
-    }
-
-    if (monto <= 0) {
-        return res.status(400).json({
-            error: "Monto inválido"
+            success: false,
+            message: "Total inválido"
         });
     }
 
     // ======================
-    // INSERTAR EN BD
+    // ESTADO INICIAL
     // ======================
+    let estadoPedido = 'PENDIENTE';
+    let estadoPago = 'PENDIENTE_VERIFICACION';
 
-    const sql = `
-        INSERT INTO pagos 
-        (pedido_id, metodo_pago, monto, codigo_aprobacion, estado)
-        VALUES (?, ?, ?, ?, ?)
-    `;
+    if (metodoPago === 'tarjeta') {
+        estadoPedido = 'PAGADO';
+        estadoPago = 'APROBADO';
+    }
 
-    db.query(sql, [
-        pedido_id,
-        metodo_pago,
-        monto,
-        codigo_aprobacion || null,
-        estado || 'PENDIENTE_VERIFICACION'
-    ], (err, result) => {
+    if (metodoPago === 'efectivo') {
+        estadoPedido = 'PENDIENTE';
+        estadoPago = 'RESERVADO';
+    }
 
-        if (err) {
-            console.error("Error al registrar pago:", err);
-            return res.status(500).json({
-                error: "Error al registrar pago"
-            });
+    try {
+
+        // ======================
+        // INSERTAR PEDIDO
+        // ======================
+        const sqlPedido = `
+            INSERT INTO pedidos
+            (usuario_id, tipo_entrega, metodo_pago, subtotal, costo_envio, total, estado)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+        `;
+
+        const [resultPedido] = await db.query(sqlPedido, [
+            usuarioId,
+            tipoEntrega,
+            metodoPago.toUpperCase(),
+            subtotal,
+            costoEnvio,
+            total,
+            estadoPedido
+        ]);
+
+        const pedidoId = resultPedido.insertId;
+// ... (Debajo de donde insertas el Detalle con VALUES ?) ...
+
+        // ======================
+        // 3️⃣ INSERTAR DATOS ENTREGA (ESTO FALTABA)
+        // ======================
+        const tipoEntregaNormalizado = tipoEntrega ? tipoEntrega.toLowerCase() : '';
+
+        if (tipoEntregaNormalizado === 'delivery' && datosEntrega) {
+            const sqlEntrega = `
+                INSERT INTO pedido_entrega
+                (pedido_id, ubicacion, referencia, telefono, nota)
+                VALUES (?, ?, ?, ?, ?)
+            `;
+
+            await db.query(sqlEntrega, [
+                pedidoId,
+                datosEntrega.ubicacion || null,
+                datosEntrega.referencia || null,
+                datosEntrega.telefono || null,
+                datosEntrega.nota || null
+            ]);
+            console.log("✅ Datos de entrega guardados para ID:", pedidoId);
         }
 
+        // ======================
+        // 4️⃣ INSERTAR PAGO (Tu código sigue aquí...)
+        // ======================
+        const estadoFinalPago = (metodoPago.toLowerCase() === 'tarjeta') ? 'Aprobado' : 'Pendiente';
+        // ... resto de tu código de pagos
+        // ======================
+        // INSERTAR DETALLE
+        // ======================
+        const sqlDetalle = `
+            INSERT INTO pedido_detalle
+            (pedido_id, producto_id, cantidad, precio_unitario)
+            VALUES ?
+        `;
+
+        const valoresDetalle = productos.map(p => [
+            pedidoId,
+            p.id,
+            p.cantidad,
+            p.precio
+        ]);
+
+        await db.query(sqlDetalle, [valoresDetalle]);
+
+        // ======================
+// INSERTAR PAGO (Corregido)
+// ======================
+
+// Definimos el estado inicial. 
+// Si es Yape/Plin/Efectivo, empieza en 'Pendiente' hasta que alguien lo valide.
+const estadoPago = (metodoPago === 'Tarjeta') ? 'Aprobado' : 'Pendiente';
+
+const sqlPago = `
+    INSERT INTO pagos 
+    (id_pedido, metodo_pago, monto_total, codigo_operacion, estado_pago) 
+    VALUES (?, ?, ?, ?, ?)
+`;
+
+await db.query(sqlPago, [
+    pedidoId,           // El ID que obtuviste al insertar el pedido
+    metodoPago,         // 'Yape', 'Plin', 'Tarjeta' o 'Efectivo'
+    total,              // 250.50
+    codigoOperacion || null, // El número de 8 dígitos de las capturas
+    estadoPago          // El estado que definimos arriba
+]);
+
+        // ======================
+        // RESPUESTA FINAL
+        // ======================
         res.status(201).json({
-            mensaje: "Pago registrado correctamente",
-            id_pago: result.insertId
+            success: true,
+            message: "Pedido creado correctamente",
+            pedido_id: pedidoId
         });
-    });
-});
 
+    } catch (error) {
 
-// ==========================================
-// LISTAR PAGOS
-// ==========================================
-router.get('/', (req, res) => {
+        console.error("❌ Error creando pedido:", error);
 
-    const sql = "SELECT * FROM pagos ORDER BY fecha DESC";
-
-    db.query(sql, (err, results) => {
-
-        if (err) {
-            console.error("Error al listar pagos:", err);
-            return res.status(500).json({
-                error: "Error al obtener pagos"
-            });
-        }
-
-        res.json(results);
-    });
-});
-
-
-// ==========================================
-// ACTUALIZAR ESTADO (APROBAR / RECHAZAR)
-// ==========================================
-router.put('/:id', (req, res) => {
-
-    const { id } = req.params;
-    const { estado } = req.body;
-
-    if (!estado) {
-        return res.status(400).json({
-            error: "Estado requerido"
+        res.status(500).json({
+            success: false,
+            message: "Error interno del servidor"
         });
     }
+});
 
-    const sql = "UPDATE pagos SET estado = ? WHERE id = ?";
 
-    db.query(sql, [estado, id], (err, result) => {
+// ==========================================
+// LISTAR PEDIDOS
+// ==========================================
+router.get('/', async (req, res) => {
 
-        if (err) {
-            console.error("Error actualizando estado:", err);
-            return res.status(500).json({
-                error: "Error actualizando estado"
-            });
-        }
+    try {
 
-        if (result.affectedRows === 0) {
-            return res.status(404).json({
-                error: "Pago no encontrado"
-            });
-        }
+        const [rows] = await db.query(`
+            SELECT * FROM pedidos
+            ORDER BY fecha_creacion DESC
+        `);
 
         res.json({
-            mensaje: "Estado actualizado correctamente"
+            success: true,
+            pedidos: rows
         });
-    });
-});
 
-module.exports = router;
+    } catch (error) {
+
+        console.error("Error listando pedidos:", error);
+
+        res.status(500).json({
+            success: false,
+            message: "Error obteniendo pedidos"
+        });
     }
-
-    if (monto <= 0) {
-        return res.status(400).json({
-            error: "Monto inválido"
-        });
-    }
-
-    // ======================
-    // INSERTAR EN BD
-    // ======================
-
-    const sql = `
-        INSERT INTO pagos 
-        (pedido_id, metodo_pago, monto, codigo_aprobacion, estado)
-        VALUES (?, ?, ?, ?, ?)
-    `;
-
-    db.query(sql, [
-        pedido_id,
-        metodo_pago,
-        monto,
-        codigo_aprobacion || null,
-        estado || 'PENDIENTE_VERIFICACION'
-    ], (err, result) => {
-
-        if (err) {
-            console.error("Error al registrar pago:", err);
-            return res.status(500).json({
-                error: "Error al registrar pago"
-            });
-        }
-
-        res.status(201).json({
-            mensaje: "Pago registrado correctamente",
-            id_pago: result.insertId
-        });
-    });
 });
 
 
 // ==========================================
-// LISTAR PAGOS
+// OBTENER PEDIDO POR ID
 // ==========================================
-router.get('/', (req, res) => {
-
-    const sql = "SELECT * FROM pagos ORDER BY fecha DESC";
-
-    db.query(sql, (err, results) => {
-
-        if (err) {
-            console.error("Error al listar pagos:", err);
-            return res.status(500).json({
-                error: "Error al obtener pagos"
-            });
-        }
-
-        res.json(results);
-    });
-});
-
-
-// ==========================================
-// ACTUALIZAR ESTADO (APROBAR / RECHAZAR)
-// ==========================================
-router.put('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
 
     const { id } = req.params;
-    const { estado } = req.body;
 
-    if (!estado) {
-        return res.status(400).json({
-            error: "Estado requerido"
-        });
-    }
+    try {
 
-    const sql = "UPDATE pagos SET estado = ? WHERE id = ?";
+        const [pedido] = await db.query(
+            "SELECT * FROM pedidos WHERE id = ?",
+            [id]
+        );
 
-    db.query(sql, [estado, id], (err, result) => {
-
-        if (err) {
-            console.error("Error actualizando estado:", err);
-            return res.status(500).json({
-                error: "Error actualizando estado"
-            });
-        }
-
-        if (result.affectedRows === 0) {
+        if (pedido.length === 0) {
             return res.status(404).json({
-                error: "Pago no encontrado"
+                success: false,
+                message: "Pedido no encontrado"
             });
         }
+
+        const [detalle] = await db.query(
+            "SELECT * FROM pedido_detalle WHERE pedido_id = ?",
+            [id]
+        );
+
+       const [pagos] = await db.query("SELECT * FROM pagos WHERE id_pedido = ?", [id]);
 
         res.json({
-            mensaje: "Estado actualizado correctamente"
+            success: true,
+            pedido: pedido[0],
+            detalle,
+            pagos
         });
-    });
+
+    } catch (error) {
+
+        console.error("Error obteniendo pedido:", error);
+
+        res.status(500).json({
+            success: false,
+            message: "Error interno"
+        });
+    }
 });
+
 
 module.exports = router;

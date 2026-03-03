@@ -2,18 +2,23 @@
 const express = require("express");
 const path = require("path");
 const db = require("./db");
-const tipoComprasRoutes = require('./routes/tipocomprasRoutes');
+const pedidostipoRoutes = require('./routes/pedidostipoRoutes');
 const productosRoutes = require("./routes/productosRoutes");
 const loginRoutes = require("./routes/loginclienteRoutes");
 const tipopagoRoutes = require('./routes/tipopagoRoutes');
+const loginadminRoutes = require('./routes/loginadminRoutes');
 const bcrypt = require("bcrypt");
 
 const app = express();
 const PORT = 3000;
+const cors = require('cors'); // Al inicio con los require
+// ...
 
+app.use(cors()); // Antes de las rutas
 // ======================
 // 1. MIDDLEWARES
 // ======================
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "../public")));
@@ -23,8 +28,9 @@ app.use(express.static(path.join(__dirname, "../public")));
 // ======================
 app.use("/api/productos", productosRoutes);
 app.use("/api/logincliente", loginRoutes);
-app.use('/api/tipoentrega', tipoComprasRoutes);
-app.use('/api/tipopago', tipopagoRoutes);
+app.use('/api/pedidostipo', pedidostipoRoutes);
+app.use('/api/pedidos', tipopagoRoutes);
+app.use('/api/loginadmin', loginadminRoutes); 
 // ======================
 // 3. RUTAS HTML
 // ======================
