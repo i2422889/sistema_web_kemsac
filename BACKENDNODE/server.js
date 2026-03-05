@@ -7,6 +7,7 @@ const productosRoutes = require("./routes/productosRoutes");
 const loginRoutes = require("./routes/loginclienteRoutes");
 const tipopagoRoutes = require('./routes/tipopagoRoutes');
 const loginadminRoutes = require('./routes/loginadminRoutes');
+<<<<<<< HEAD
 const reservaRoutes = require('./routes/reservaRoutes');
 //admin//
 const panelgeneraladminRoutes = require('./routes/panelgeneraladminRoutes');
@@ -14,6 +15,8 @@ const panelgeneraladminRoutes = require('./routes/panelgeneraladminRoutes');
 
 
 
+=======
+>>>>>>> eb4aa415171c5653bbac13971acaafa2b363b0d6
 const bcrypt = require("bcrypt");
 
 const app = express();
@@ -25,12 +28,16 @@ app.use(cors()); // Antes de las rutas
 // ======================
 // 1. MIDDLEWARES
 // ======================
+<<<<<<< HEAD
 // 2. AUMENTAR EL LÍMITE PARA IMÁGENES BASE64
 // CAMBIO: Por defecto Express usa 1mb, las fotos de laptop pesan más.
 app.use(express.json({ limit: '50mb' })); 
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
 ///// PARA SERVIR ARCHIVOS ESTÁTICOS (CSS, JS, IMÁGENES)//
+=======
+
+>>>>>>> eb4aa415171c5653bbac13971acaafa2b363b0d6
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "../public")));
@@ -43,8 +50,11 @@ app.use("/api/logincliente", loginRoutes);
 app.use('/api/pedidostipo', pedidostipoRoutes);
 app.use('/api/pedidos', tipopagoRoutes);
 app.use('/api/loginadmin', loginadminRoutes); 
+<<<<<<< HEAD
 app.use('/api/reservas', reservaRoutes);
 app.use('/api/', panelgeneraladminRoutes);
+=======
+>>>>>>> eb4aa415171c5653bbac13971acaafa2b363b0d6
 // ======================
 // 3. RUTAS HTML
 // ======================
