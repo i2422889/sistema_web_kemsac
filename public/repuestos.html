@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ventas de Repuestos</title>
+    <link rel="stylesheet" href="/css/repuestos.css">
+</head>
+<body>
+
+<header>
+    <h1>🛠️ Venta de Repuestos</h1>
+
+    <!-- 🔹 CARRITO FLOTANTE -->
+    <div class="carrito-flotante" id="btnCarrito">
+        🛒
+        <span class="contador-carrito" id="contadorCarrito">0</span>
+    </div>
+</header>
+
+<section class="contenedor-productos">
+
+    <!-- PRODUCTO 1 -->
+    <div class="card-producto">
+        <img src="img/logo1.png" alt="Filtro de Aceite">
+        <h3>Filtro de Aceite</h3>
+        <p>Filtro original para mejor rendimiento del motor.</p>
+        <span class="precio">35.00</span>
+        <div class="botones">
+            <button class="btn-carrito">Agregar al carrito</button>
+            <button class="btn-detalle">Detalles</button>
+        </div>
+    </div>
+
+    <!-- PRODUCTO 2 -->
+    <div class="card-producto">
+        <img src="img/logo2.png" alt="Batería 12V">
+        <h3>Batería 12V</h3>
+        <p>Batería de alto rendimiento y larga duración.</p>
+        <span class="precio">280.00</span>
+        <div class="botones">
+            <button class="btn-carrito">Agregar al carrito</button>
+            <button class="btn-detalle">Detalles</button>
+        </div>
+    </div>
+
+    <!-- PRODUCTO 3 -->
+    <div class="card-producto">
+        <img src="img/logo3.png" alt="Aceite Sintético 5W-30">
+        <h3>Aceite Sintético 5W-30</h3>
+        <p>Aceite premium para mayor protección del motor.</p>
+        <span class="precio">120.00</span>
+        <div class="botones">
+            <button class="btn-carrito">Agregar al carrito</button>
+            <button class="btn-detalle">Detalles</button>
+        </div>
+    </div>
+
+    <!-- PRODUCTO 4 -->
+    <div class="card-producto">
+        <img src="img/logo4.png" alt="Pastillas de Freno">
+        <h3>Pastillas de Freno</h3>
+        <p>Mayor seguridad y mejor frenado.</p>
+        <span class="precio">150.00</span>
+        <div class="botones">
+            <button class="btn-carrito">Agregar al carrito</button>
+            <button class="btn-detalle">Detalles</button>
+        </div>
+    </div>
+
+</section>
+
+<!-- 🔹 MODAL DETALLE -->
+<div class="modal" id="modalDetalle">
+    <div class="modal-contenido">
+        <span class="cerrar">&times;</span>
+        <img id="modalImg">
+        <h2 id="modalNombre"></h2>
+        <p id="modalDescripcion"></p>
+        <h3>S/ <span id="modalPrecio"></span></h3>
+        <button id="agregarModal">Agregar al carrito</button>
+    </div>
+</div>
+
+<!-- 🔹 CARRITO LATERAL -->
+<div class="carrito-lateral" id="carrito">
+    <h2>🛒 Carrito</h2>
+    <div id="itemsCarrito"></div>
+    <h3>Total: S/ <span id="totalCarrito">0.00</span></h3>
+    <button class="btn-vaciar" onclick="vaciarCarrito()">Vaciar carrito</button>
+</div>
+
+<script src="/js/repuestos.js"></script>
+</body>
+</html>

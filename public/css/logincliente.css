@@ -1,0 +1,248 @@
+/* ESTILO GLOBAL */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* CONTENEDOR PRINCIPAL */
+.login-container {
+    background: #fff;
+    padding: 40px 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+/* LOGO */
+.login-container .logo h1 {
+    margin: 0;
+    font-size: 2rem;
+    color: #ff6b00;
+}
+.login-container .logo p {
+    margin: 5px 0 20px 0;
+    color: #555;
+}
+
+/* BOTÓN GOOGLE */
+.btn-google {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.3s;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.btn-google:hover {
+    background: #f0f0f0;
+}
+
+/* SEPARADOR */
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 10px 0 20px 0;
+}
+.separator span {
+    padding: 0 10px;
+    color: #888;
+}
+.separator::before,
+.separator::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #ddd;
+}
+
+/* FORMULARIOS */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+form input {
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    font-size: 0.95rem;
+    outline: none;
+    transition: 0.2s;
+}
+
+form input:focus {
+    border-color: #ff6b00;
+}
+
+form button {
+    padding: 12px;
+    background-color: #ff6b00;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+form button:hover {
+    background-color: #e65c00;
+}
+
+/* RECUPERAR CONTRASEÑA */
+.recuperar {
+    font-size: 0.85rem;
+    color: #ff6b00;
+    text-decoration: none;
+    align-self: flex-end;
+}
+
+.recuperar:hover {
+    text-decoration: underline;
+}
+
+/* DIVIDER */
+.divider {
+    height: 1px;
+    background: #ddd;
+    margin: 20px 0;
+}
+
+/* BOTÓN REGISTRO */
+#btnRegistro {
+    background: #28a745;
+    color: #fff;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    width: 100%;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+#btnRegistro:hover {
+    background: #218838;
+}
+
+/* =========================
+   MODAL DE REGISTRO
+   ========================= */
+.modal {
+    display: none; /* oculto por defecto */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6); /* overlay oscuro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 30px 25px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    position: relative;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    color: #ff6b00;
+}
+
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.modal-content input {
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    font-size: 0.95rem;
+}
+
+.modal-content button {
+    padding: 12px;
+    background-color: #ff6b00;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.modal-content button:hover {
+    background-color: #e65c00;
+}
+
+/* CERRAR MODAL */
+.modal-content .close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+
+
+
+
+/* =========================
+   BOTÓN VOLVER MODAL
+   ========================= */
+.btn-volver-modal {
+    display: inline-block;
+    background-color: #f0f0f0;   /* fondo gris claro */
+    color: #333;                 /* texto oscuro */
+    border: none;
+    border-radius: 8px;          /* bordes redondeados */
+    padding: 8px 16px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 15px;         /* separación del logo */
+}
+
+.btn-volver-modal:hover {
+    background-color: #0c54fb;  /* azul principal al pasar el mouse */
+    color: #fff;                 /* texto blanco */
+    transform: translateY(-2px); /* ligero movimiento hacia arriba */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.btn-volver-modal:active {
+    transform: translateY(0);
+    box-shadow: none;
+}

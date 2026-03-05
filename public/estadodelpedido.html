@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seguimiento de Pedido</title>
+    <link rel="stylesheet" href="css/estadodelpedido.css">
+</head>
+<body>
+
+    <div class="status-container">
+        <header class="status-header">
+            <h1>¡Gracias por tu compra!</h1>
+            <p class="order-number">Pedido <span id="idDisplay">#---</span></p>
+        </header>
+
+        <div class="stepper">
+            <div class="step" id="step1">
+                <div class="circle">1</div>
+                <div class="label">Recibido</div>
+            </div>
+            <div class="step" id="step2">
+                <div class="circle">2</div>
+                <div class="label">Preparando</div>
+            </div>
+            <div class="step" id="step3">
+                <div class="circle">3</div>
+                <div class="label">En camino</div>
+            </div>
+            <div class="step" id="step4">
+                <div class="circle">4</div>
+                <div class="label">Entregado</div>
+            </div>
+        </div>
+
+        <div class="order-info" id="detallePedido">
+            <p>Cargando información del pedido...</p>
+        </div>
+
+        <div id="map-section">
+            <h3>Sigue a tu repartidor en tiempo real</h3>
+            <iframe
+                id="map"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3877.272674019145!2d-75.20561668467193!3d-12.06503354326785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x910f460e2c0f68f3%3A0x7f1a6b0731d30a6c!2sHuancayo%2C+Jun%C3%ADn%2C+Per%C3%BA!5e0!3m2!1ses!2sus!4v1695962927101!5m2!1ses!2sus"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+
+        <div class="actions">
+            <a href="https://wa.me/979037510" class="btn-whatsapp" target="_blank">
+                💬 Contactar soporte
+            </a>
+            <button class="btn-home" onclick="window.location.href='index.html'">
+                Volver a la tienda
+            </button>
+        </div>
+    </div>
+
+    <script src="js/estadodelpedido.js"></script>
+</body>
+</html>

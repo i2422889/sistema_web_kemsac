@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KEMSAC - Panel de Administración</title>
+    <link rel="stylesheet" href="css/adminpanelgeneral.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="admin-wrapper">
+
+
+    <!-- 🔹 Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-container">
+                <i class="fas fa-tools"></i>
+                <span>KEMSAC Admin</span>
+            </div>
+        </div>
+
+        <nav class="menu-nav">
+            <div class="nav-wrapper">
+                <button class="nav-link active" data-page="dashboard_view.html">
+                    <span class="nav-border"></span>
+                    <i class="fas fa-th-large"></i> <span>Dashboard</span>
+                </button>
+                
+                <button class="nav-link" data-page="ventas.html">
+                    <span class="nav-border"></span>
+                    <i class="fas fa-shopping-cart"></i> <span>Ventas</span>
+                </button>
+                
+                <button class="nav-link" data-page="clientes.html">
+                    <span class="nav-border"></span>
+                    <i class="fas fa-users"></i> <span>Clientes</span>
+                </button>
+                
+                <button class="nav-link" data-page="productoadmin.html">
+                    <span class="nav-border"></span>
+                    <i class="fas fa-box"></i> <span>Productos</span>
+                </button>
+                
+                <button class="nav-link" data-page="vehiculos.html">
+                    <span class="nav-border"></span>
+                    <i class="fas fa-car"></i> <span>Vehículos</span>
+                </button>
+
+                <button class="nav-link" data-page="analytics.html">
+                    <span class="nav-border"></span>
+                    <i class="fas fa-chart-line"></i> <span>Analytics</span>
+                </button>
+
+                <button class="nav-link" data-page="almacen.html">
+                    <span class="nav-border"></span>
+                    <i class="fas fa-warehouse"></i> <span>Almacén</span>
+                </button>
+            </div>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button id="logoutBtn" class="logout-link">
+                <i class="fas fa-sign-out-alt"></i> <span>Cerrar Sesión</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- 🔹 Contenido principal -->
+    <main class="main-content">
+        <div id="main-container" class="dynamic-container">
+            <div class="loading-spinner">Cargando panel...</div>
+        </div>
+    </main>
+
+</div>
+
+<script src="js/adminpanelgeneral.js"></script>
+</body>
+</html>

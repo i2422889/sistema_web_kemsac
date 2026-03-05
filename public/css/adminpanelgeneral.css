@@ -1,0 +1,387 @@
+/* 🔹 Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* 🔹 Colores */
+:root {
+    --primary-color: #5209c0;
+    --secondary-color: #7d3ff2;
+    --tertiary-color: #ff006e;
+    --accent-color: #00f5ff;
+    --bg-sidebar: linear-gradient(135deg, rgba(0, 0, 0, 0.98) 0%, rgba(4, 33, 83, 0.996) 100%);
+    --bg-main: #ffffff;
+    --hover-color: rgba(125,63,242,0.3);
+    --btn-border: #0274ff;
+    --glass-bg: rgba(255,255,255,0.1);
+}
+
+/* 🔹 Contenedor general */
+.admin-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* 🔹 Sidebar */
+.sidebar {
+    width: 250px;
+    background: var(--bg-sidebar);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    transition: width 0.4s ease, transform 0.3s ease;
+    backdrop-filter: blur(10px);
+    border-right: 2px solid rgb(250, 31, 11);
+    box-shadow: 0 0 30px rgba(82, 9, 192, 0.2);
+}
+
+.sidebar.collapsed {
+    width: 0;
+    overflow: hidden;
+}
+
+.sidebar-header {
+    padding: 25px 20px;
+    font-size: 1.4rem;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.logo-container i {
+    color: var(--primary-color);
+    margin-right: 10px;
+}
+
+/* 🔹 Menú */
+.menu-nav {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    perspective: 1000px;
+}
+
+.nav-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 10px;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    padding: 14px 18px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(125, 63, 242, 0.3);
+    border-radius: 14px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    font-size: 1rem;
+    font-weight: 500;
+    backdrop-filter: blur(8px);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.nav-border {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: -100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s ease;
+}
+
+.nav-link:hover .nav-border {
+    left: 100%;
+}
+
+.nav-link i {
+    margin-right: 12px;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.nav-link span:not(.nav-border) {
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    background: linear-gradient(135deg, rgb(250, 106, 3), rgb(255, 64, 0));
+    border: 2px solid rgba(0, 245, 255, 0.6);
+    transform: translateX(8px) translateY(-2px);
+    box-shadow: 0 8px 25px rgba(82, 9, 192, 0.4);
+}
+
+.nav-link:hover i {
+    transform: scale(1.2) rotate(10deg);
+    color: var(--accent-color);
+}
+
+.nav-link.active {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border: 2px solid var(--accent-color);
+    box-shadow: 0 0 20px rgba(82, 9, 192, 0.6), inset 0 0 10px rgba(0, 245, 255, 0.2);
+    transform: perspective(600px) rotateY(-5deg) translateX(5px);
+}
+
+.nav-link.active i {
+    color: var(--accent-color);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* 🔹 Footer */
+.sidebar-footer {
+    margin-top: auto;
+    padding: 20px;
+}
+
+.logout-link {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--tertiary-color);
+    border-radius: 14px;
+    background: rgba(255, 0, 110, 0.1);
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    backdrop-filter: blur(5px);
+    position: relative;
+    overflow: hidden;
+}
+
+.logout-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.6s ease;
+}
+
+.logout-link:hover::before {
+    left: 100%;
+}
+
+.logout-link:hover {
+    background: linear-gradient(135deg, var(--tertiary-color), rgba(255, 0, 110, 0.3));
+    border: 2px solid var(--accent-color);
+    transform: scale(1.08) translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 0, 110, 0.4);
+}
+
+/* 🔹 Animaciones */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.15);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(82, 9, 192, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(82, 9, 192, 0.6);
+    }
+}
+
+@keyframes fadeInOut {
+    0%, 100% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes coverFlow {
+    0% {
+        transform: perspective(1000px) rotateY(45deg) translateZ(0);
+        opacity: 0;
+    }
+    100% {
+        transform: perspective(1000px) rotateY(0deg) translateZ(0);
+        opacity: 1;
+    }
+}
+
+/* 🔹 Contenido principal */
+.main-content {
+    flex: 1;
+    background: var(--bg-main);
+    padding: 0;
+    transition: margin-left 0.4s ease;
+}
+
+.top-bar {
+    display: none;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    animation: slideIn 0.5s ease-in-out;
+}
+
+.user-avatar {
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #fff;
+    font-size: 1.1rem;
+    border: 2px solid var(--accent-color);
+    animation: glow 2s ease-in-out infinite;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.user-avatar:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* 🔹 Botón toggle */
+.toggle-btn {
+    display: none;
+}
+
+/* --- Ajuste del Padre para que permita el crecimiento --- */
+.main-content {
+    flex: 1; /* Ocupa todo el ancho restante a la derecha del sidebar */
+    display: flex;
+    flex-direction: column;
+    padding: 20px; /* Espacio de seguridad para que el contenedor no choque con los bordes */
+    height: 100vh; /* Altura total de la ventana */
+    overflow: hidden; /* Evita scrolls dobles innecesarios */
+}
+
+/* 🔹 Contenedor dinámico (Tu diseño con dimensiones maximizadas) */
+.dynamic-container {
+    background: #ffffff;
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 0;
+    flex: 1;
+    width: 100%;
+    padding: 30px;
+    margin: 0;
+    overflow-y: auto;
+    height: 100vh;
+}
+
+/* Ocultar scrollbar */
+.dynamic-container::-webkit-scrollbar {
+    display: none;
+}
+.dynamic-container {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.loading-spinner {
+    text-align: center;
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* 🔹 Responsive */
+@media (max-width: 768px) {
+    :root {
+        font-size: 14px;
+    }
+    
+    .sidebar {
+        position: fixed;
+        left: -250px;
+        top: 0;
+        height: 100%;
+        z-index: 999;
+        width: 240px;
+    }
+    
+    .sidebar.active {
+        left: 0;
+        animation: slideIn 0.3s ease-in-out;
+    }
+    
+    .toggle-btn {
+        top: 10px;
+        left: 10px;
+        padding: 12px;
+        width: 45px;
+        height: 45px;
+    }
+    
+    .main-content {
+        padding: 15px;
+    }
+    
+    .top-bar {
+        padding: 12px 15px;
+    }
+    
+    .dynamic-container {
+        padding: 20px;
+        min-height: 300px;
+    }
+    
+    .nav-link {
+        padding: 12px 16px;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+        width: 220px;
+    }
+    
+    .nav-link {
+        padding: 10px 14px;
+        font-size: 0.9rem;
+    }
+    
+    .logo-container {
+        font-size: 1.1rem;
+    }
+}

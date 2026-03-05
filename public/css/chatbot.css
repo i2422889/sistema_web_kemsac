@@ -1,0 +1,28 @@
+:root{
+  --primary:#2b6cb0;
+  --bg:#fff;
+  --muted:#6b7280;
+  --accent:#10b981;
+}
+body{font-family:Inter, system-ui, Arial, sans-serif;margin:0;padding:0;background:transparent}
+.chat-toggle{position:fixed;right:20px;bottom:20px;z-index:9999}
+.chat-btn{width:56px;height:56px;border-radius:50%;background:var(--primary);color:white;border:none;box-shadow:0 6px 18px rgba(43,108,176,0.25);cursor:pointer;font-size:24px;display:flex;align-items:center;justify-content:center}
+.chat-window{position:fixed;right:20px;bottom:88px;width:340px;max-width:calc(100% - 40px);height:480px;background:var(--bg);border-radius:12px;box-shadow:0 10px 30px rgba(2,6,23,0.2);overflow:hidden;display:flex;flex-direction:column;z-index:9999;transform:scale(0.95);opacity:0;pointer-events:none;transition:all .18s ease}
+.chat-window.open{transform:scale(1);opacity:1;pointer-events:auto}
+.chat-header{background:linear-gradient(90deg,var(--primary),#1e40af);color:white;padding:14px 16px;display:flex;align-items:center;justify-content:space-between}
+.chat-header h3{margin:0;font-size:16px}
+.chat-header .icon{background:transparent;border:0;color:rgba(255,255,255,0.95);cursor:pointer;font-size:18px}
+.chat-body{flex:1;padding:12px;overflow:auto;background:linear-gradient(0deg,#f7fafc,white)}
+.messages{display:flex;flex-direction:column;gap:8px}
+.msg{max-width:78%;padding:10px 12px;border-radius:12px;font-size:14px;line-height:1.3}
+.msg.user{margin-left:auto;background:#e6f4ff;color:#012a4a;border-bottom-right-radius:4px}
+.msg.bot{margin-right:auto;background:#f1f5f9;color:#0f172a;border-bottom-left-radius:4px}
+.chat-footer{padding:10px;border-top:1px solid #eef2f7;display:flex;gap:8px}
+.chat-input{flex:1;border:1px solid #e6edf3;padding:10px;border-radius:8px;font-size:14px}
+.send-btn{background:var(--accent);color:white;border:none;padding:10px 12px;border-radius:8px;cursor:pointer}
+.small{font-size:12px;color:var(--muted);padding:8px 12px}
+.action-buttons{display:flex;gap:8px;margin-top:8px}
+.action-btn{padding:8px 10px;border-radius:8px;border:0;cursor:pointer;font-size:13px}
+.action-btn.primary{background:var(--primary);color:white}
+.action-btn.ghost{background:transparent;border:1px solid #e6edf3;color:var(--muted)}
+@media (max-width:420px){.chat-window{right:10px;left:10px;width:auto;height:60vh}}

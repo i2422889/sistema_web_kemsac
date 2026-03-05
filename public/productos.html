@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KEMSAC - Catálogo de Productos</title>
+
+    <!-- Estilos de productos -->
+    <link rel="stylesheet" href="css/productos.css">
+</head>
+<body>
+
+    <!-- =========================
+         HEADER / BARRA SUPERIOR
+         ========================= -->
+    <header class="topbar">
+        <!-- Botón para volver a la página anterior -->
+        <button class="btn-volver" onclick="window.history.back()">
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+        <!-- Logo de la empresa -->
+        <div class="logo">
+            <h1>KEMSAC</h1>
+        </div>
+
+        <!-- Espacio flexible para alinear contenido -->
+        <div class="spacer"></div>
+    </header>
+
+    <!-- =========================
+         TÍTULO DE LA PÁGINA
+         ========================= -->
+    <section class="titulo-pagina">
+        <h1>NUESTRO CATÁLOGO</h1>
+        <p>Repuestos y aceites de alta calidad para tu motor</p>
+    </section>
+
+    <!-- =========================
+         CONTENEDOR PRINCIPAL DE PRODUCTOS
+         ========================= -->
+<main class="container">
+
+    <!-- FILTROS / BOTONES DE CATEGORÍAS -->
+    <div class="filtros-container">
+        <!-- Cada botón filtra los productos según su categoría -->
+        <button class="btn-filtro active" onclick="filtrar('todos')">Todos</button>
+        <button class="btn-filtro" onclick="filtrar('aceites')">Aceites</button>
+        <button class="btn-filtro" onclick="filtrar('repuestos')">Repuestos</button>
+    </div>
+
+    <!-- CONTAINER GENERAL DEL CATÁLOGO -->
+    <div class="productos-container">
+        <!-- GRID DE PRODUCTOS -->
+        <div class="productos-grid" id="productosContainer">
+            <!-- Mensaje de carga inicial mientras se consulta la base de datos -->
+            <div class="loading-msg">
+                <i class="fa-solid fa-circle-notch fa-spin"></i>
+                <p>Consultando base de datos...</p>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+    <!-- =========================
+         CARRITO FLOTANTE
+         ========================= -->
+    <!-- Carrito flotante estilo sticker -->
+<div class="carrito-flotante" onclick="window.location.href='carrito.html'">
+    <!-- Círculo del carrito -->
+    <div class="sticker-carrito" id="contadorCarrito">
+        🛒0
+    </div>
+</div>
+    <!-- =========================
+         MODAL DE DETALLES DEL PRODUCTO
+         ========================= -->
+    <div id="modalDetalles" class="modal">
+        <div class="modal-content">
+            <!-- Botón para cerrar el modal -->
+            <span class="close" onclick="cerrarModal()">&times;</span>
+
+            <!-- Información dinámica del producto -->
+            <h2 id="modalNombre"></h2>
+            <p id="modalDescripcion"></p>
+            <span id="modalPrecio"></span>
+        </div>
+    </div>
+
+    <!-- =========================
+         SCRIPT PRINCIPAL DE PRODUCTOS
+         - carga productos desde la BD
+         - filtra por categoría
+         - agrega al carrito
+         - muestra modal de detalles
+         ========================= -->
+    <script src="js/productos.js"></script>
+</body>
+</html>

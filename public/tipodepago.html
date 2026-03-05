@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finalizar Pago - Mi Tienda</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/tipodepago.css">
+</head>
+<body>
+
+<div class="main-wrapper">
+    <div class="contenedor">
+        <header class="header-pago">
+            <a href="#" class="btn-regresar" onclick="window.history.back();">← Volver</a>
+            <h1>Método de Pago</h1>
+            <p>Selecciona cómo deseas pagar tu pedido</p>
+        </header>
+
+        <div class="contenido-pago">
+            <div class="grid-pagos">
+                <div class="card yape" onclick="abrirVista('yape')">
+                    <div class="card-overlay"></div>
+                    <div class="card-content">
+                        <div class="icono">📱</div>
+                        <h2>Yape</h2>
+                        <p>Transferencia inmediata</p>
+                    </div>
+                </div>
+
+                <div class="card plin" onclick="abrirVista('plin')">
+                    <div class="card-overlay"></div>
+                    <div class="card-content">
+                        <div class="icono">💳</div>
+                        <h2>Plin</h2>
+                        <p>Transferencia inmediata</p>
+                    </div>
+                </div>
+
+                <div class="card tarjeta" onclick="abrirVista('tarjeta')">
+                    <div class="card-overlay"></div>
+                    <div class="card-content">
+                        <div class="icono">🔒</div>
+                        <h2>Tarjeta</h2>
+                        <p>Débito o Crédito</p>
+                    </div>
+                </div>
+
+                <div class="card efectivo" id="cardEfectivo">
+    <div class="card-content">
+        <div class="icono">💵</div>
+        <h2>Efectivo</h2>
+        <p>Pago en tienda</p>
+
+        <!-- NUEVO BOTÓN -->
+        <button class="btn-efectivo"
+                onclick="activarEfectivo(event)">
+            Activar pago en efectivo
+        </button>
+    </div>
+</div>
+            </div>
+
+            <aside class="resumen-pedido">
+                <h2>Resumen del Pedido</h2>
+                <div class="detalles-costo">
+                    <div class="fila-costo">
+                        <span>Subtotal</span>
+                        <span id="pagoSubtotal">S/ 0.00</span>
+                    </div>
+                    <div class="fila-costo">
+                        <span>Envío (<span id="pagoTipoEntrega">...</span>)</span>
+                        <span id="pagoEnvio">S/ 0.00</span>
+                    </div>
+                    <hr>
+                    <div class="fila-costo total">
+                        <span>Total a Pagar</span>
+                        <span id="totalMostrado">S/ 0.00</span>
+                    </div>
+                </div>
+                <div class="pago-seguro-info">
+                    🛡️ Pago 100% Seguro
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="modalPago">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="cerrar" onclick="cerrarModal()">✕</span>
+            <h2 id="tituloModal">Detalles del Pago</h2>
+        </div>
+        <div class="modal-body" id="contenidoModal">
+            </div>
+    </div>
+</div>
+
+<div class="procesando-container" id="procesandoPedido">
+    <div class="procesando-content">
+        <div class="spinner"></div>
+        <h2>Procesando tu pedido</h2>
+        <p>Estamos verificando los detalles. Por favor no cierres esta ventana.</p>
+    </div>
+</div>
+
+<script src="js/tipodepago.js"></script>
+</body>
+</html>

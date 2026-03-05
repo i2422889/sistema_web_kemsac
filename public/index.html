@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KEMSAC | Huancayo - Chilca</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+
+<!-- TOPBAR -->
+<header class="topbar">
+  <div class="logo">
+    <div class="logo-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+    <div class="logo-text">
+      <strong>KEMSAC</strong>
+      <span>Huancayo - Chilca</span>
+    </div>
+  </div>
+
+  <a href="loginadmin.html" class="admin-link">
+    <i class="fa-solid fa-arrow-right-to-bracket"></i> Admin
+  </a>
+</header>
+
+<!-- CARRUSEL -->
+<section class="carousel">
+  <div class="carousel-slide active">
+    <img src="img/logo1.png" alt="">
+    <div class="carousel-info">
+      <h2>Batería 12V 60Ah</h2>
+      <p>Batería de alto rendimiento para vehículos medianos</p>
+      <span>S/ 280.00</span>
+      <button>Agregar al carrito</button>
+    </div>
+  </div>
+
+  <div class="carousel-slide">
+    <img src="img/logo2.png" alt="">
+  </div>
+
+  <div class="carousel-slide">
+    <img src="img/logo3.png" alt="">
+  </div>
+
+  <button class="nav prev" onclick="changeSlide(-1)">❮</button>
+  <button class="nav next" onclick="changeSlide(1)">❯</button>
+</section>
+
+<!-- BUSCADOR Y FILTROS -->
+<section class="filters-box">
+  <div class="filters-container">
+
+    <div class="search-box">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" id="buscar" placeholder="Buscar productos o repuestos...">
+    </div>
+
+    <div class="buttons">
+      <button class="active" onclick="filtrar('todos')">Todos</button>
+      <button id="btnRepuestos" class="btn-ver-repuestos"> 
+        Ver repuestos 
+      </button>
+   
+      <button onclick="filtrar('servicio')">Servicios</button>
+     <button 
+  id="btnProductos" 
+  class="btn-ver-productos"
+  onclick="window.location.href='productos.html'">
+  Ver productos
+</button>
+
+
+    </div>
+
+  </div>
+</section>
+
+
+
+
+<!-- PRODUCTOS -->
+<section class="grid" id="productos"></section>
+
+<!-- BOTONES FLOTANTES -->
+<div class="floating">
+  <button id="btnChat" class="whatsapp" aria-label="Chatbot">
+    <i class="fa-solid fa-robot"></i>
+  </button>
+
+  <button id="btnReserva" class="cart" aria-label="Reserva">
+    <i class="fa-solid fa-calendar-check"></i>
+  </button>
+</div>
+
+<script src="js/floating.js"></script>
+<script src="js/repuestos.js"></script>
+<script src="js/floating.js"></script>
+<script src="js/index.js"></script>
+<script src="js/carousel.js"></script>
+<script src="js/productos.js"></script>
+</body>
+</html>

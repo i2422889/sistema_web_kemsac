@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel KEMSAC - Gestión de Productos</title>
+    <link rel="stylesheet" href="css/productoadmin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<div class="admin-view-container">
+    <div class="admin-header">
+        <h2><i class="fas fa-edit"></i> Gestión Central de Productos</h2>
+        <p>Control total del inventario KEMSAC.</p>
+    </div>
+
+    <section class="admin-card-section">
+        <div class="admin-card">
+            <h3 id="form-title"><i class="fas fa-plus-circle"></i> Agregar Nuevo Producto</h3>
+            <form id="form-producto-admin">
+                <input type="hidden" id="prod-id">
+
+                <div class="admin-grid-inputs">
+                    <div class="input-group">
+                        <label>Nombre del Producto</label>
+                        <input type="text" id="prod-nombre" required>
+                    </div>
+                   
+                    <div class="input-group">
+                        <label>Marca</label>
+                        <input type="text" id="prod-marca" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Precio (S/)</label>
+                        <input type="number" id="prod-precio" step="0.01" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Stock Actual</label>
+                        <input type="number" id="prod-stock" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Stock Mínimo</label>
+                        <input type="number" id="prod-stock-min" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Categoría 
+                            <button type="button" onclick="abrirModalCategoria()" class="mini-btn"><i class="fas fa-plus"></i></button>
+                        </label>
+                        <select id="prod-categoria"></select>
+                    </div>
+                    <div class="input-group">
+                        <label>Estado</label>
+                        <select id="prod-estado">
+                            <option value="activo">Activo</option>
+                            <option value="inactivo">Inactivo</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="admin-grid-inputs">
+                    <div class="input-group">
+                        <label><i class="fas fa-link"></i> URL de Imagen</label>
+                        <input type="url" id="prod-url-img">
+                    </div>
+                    <div class="input-group">
+                        <label><i class="fas fa-upload"></i> Subir Archivo</label>
+                        <input type="file" id="prod-file-img" accept="image/*">
+                    </div>
+                </div>
+
+                <div class="input-group full-width">
+                    <label>Descripción y Detalles</label>
+                    <textarea id="prod-descripcion" rows="3"></textarea>
+                </div>
+
+                <div class="admin-actions">
+                    <button type="submit" class="btn-save"><i class="fas fa-save"></i> Guardar en DB</button>
+                    <button type="button" onclick="limpiarFormulario()" class="btn-cancel">Limpiar</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <section class="admin-card-section">
+        <div class="admin-card">
+            <h3><i class="fas fa-list"></i> Inventario Actual</h3>
+            <div class="table-responsive">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Imagen</th>
+                            <th>Info</th>
+                            <th>Categoría</th> 
+                            <th>Precio</th>
+                            <th>Stock</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-productos-body"></tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div id="modal-cat" class="modal-overlay">
+    <div class="modal-content">
+        <h4><i class="fas fa-folder-plus"></i> Gestionar Categorías</h4>
+
+        <input type="text" id="nueva-cat-nombre" placeholder="Nombre (ej: Frenos)">
+
+        <div class="modal-buttons">
+            <button type="button" onclick="agregarCategoria()" class="btn-confirm">
+                Agregar
+            </button>
+            <button type="button" onclick="cerrarModal()" class="btn-cancel">
+                Cerrar
+            </button>
+        </div>
+
+        <hr>
+
+        <!-- 🔥 LISTA DE CATEGORÍAS -->
+        <div id="lista-categorias"></div>
+    </div>
+</div>
+
+<script src="js/productoadmin.js"></script>
+</body>
+</html>
